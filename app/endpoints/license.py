@@ -20,4 +20,7 @@ def license(key, ext_id, device_id, phone_number):
     else:
         result = {}
 
+    
+    print(result)
+
     return jsonify(result)
