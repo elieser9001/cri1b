@@ -23,7 +23,7 @@ def create_license(
 ):  
     #  "%Y-%m-%d %I:%M:%S %p"
     expired_time = datetime.strptime(expired_time, "%d-%m-%Y %I:%M:%S %p")
-    key = str(uuid.uuid4())
+    key = str(uuid.uuid4()).replace('-', '')
     
     license = License(
         # extension_id,
