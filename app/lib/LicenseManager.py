@@ -25,10 +25,21 @@ class LicenseManager:
         response = {}
         
         if (self.extension_id == Extensions.WHATSUP_PLUS):
+            # response = {
+            #     "cancelado": "",
+            #     "s_status": "active",
+            #     "users": [int(self.phone_number)],
+            #     "lid": "141231251232132142321321",
+            #     "plan_id": "8",
+            #     "email": self.license.email,
+            #     "support_number": 14123125123213214,
+            #     "first_name": self.license.name,
+            #     "last_name": self.license.lastname
+            # }
             response = {
                 "cancelado": "",
                 "s_status": "active",
-                "users": [int(self.phone_number)],
+                "users": [int("3112331321")],
                 "lid": "141231251232132142321321",
                 "plan_id": "8",
                 "email": self.license.email,
