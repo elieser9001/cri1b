@@ -1,4 +1,3 @@
-# import json
 from datetime import datetime
 
 class Extensions():
@@ -39,7 +38,6 @@ class LicenseManager:
                 "last_name": self.last_name
             }
         if (self.extension_id  == Extensions.WHATWEB):
-            # date_format = datetime.strptime(self.license.expired_time, "%d-%m-%Y %I:%M:%S %p")
             expired = datetime.timestamp(self.expired_time)
             response = {
                 "valid": True,
@@ -52,5 +50,4 @@ class LicenseManager:
                 "expiration": expired,
             }
 
-        # return json.dumps(response)
         return response
