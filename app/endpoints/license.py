@@ -1,26 +1,35 @@
 from flask import Blueprint, jsonify
 from app.lib.LicenseManager import LicenseManager
 from app.database import crud
+from app.lib.wordpressApi import get_cri1_license
 
 bp = Blueprint('clients_checkin', __name__)
 
-@bp.route('/license/<key>/<ext_id>/<device_id>/<phone_number>/')
-def license(key, ext_id, device_id, phone_number):
-    license = crud.get_license(key=key)
+@bp.route('/license/<email>/<ext_id>/<device_id>/<phone_number>/')
+def license(email, ext_id, device_id, phone_number):
+    crud.link_device(device_id=device_id, email=email, ext_id=ext_id)
+    devices_count = crud.devices_count(email=email, ext_id=ext_id)
+
+    if devices_count > 3:
+        return jsonify({"error": "max_devices_linked"})
     
-    if license:
-        lm = LicenseManager(
-            license=license,
+    cri1_license = get_cri1_license(email=email)
+
+    if cri1_license:
+        ext_license = LicenseManager(
+            email=email,
+            first_name=cri1_license["user_first_name"],
+            last_name=cri1_license["user_last_name"],
             extension_id=ext_id,
-            device_id=device_id,
+            device_id=ext_id,
             phone_number=phone_number
         )
-
-        result = lm.extension_data()
-    else:
-        result = {}
-
+        
+        extension_data = ext_license.extension_data()
     
-    print(result)
+        return jsonify({
+            "devices_count": devices_count,
+            "cri1_license": cri1_license,
+            "ext_license": extension_data
+        })
 
-    return jsonify(result)

@@ -20,5 +20,6 @@ class Device(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(200))
     key = Column(String(200))
+    ext_id = Column(String(200))
     __table_args__ = (UniqueConstraint('email', 'key', name='_email_key'),)
     
