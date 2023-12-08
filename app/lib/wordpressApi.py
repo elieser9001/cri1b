@@ -64,7 +64,7 @@ def get_cri1_license(email: str):
 
             return {"user_first_name": user_json_data["first_name"], "user_last_name": user_json_data["last_name"], "company_name": user_json_data["billing"]["company"], "valid_license":  False}
         else:
-            return None
+            return {"user_first_name": "", "user_last_name": "", "company_name": "", "valid_license":  False}
     except Exception as e:
         print(e)
-        return None
+        return {"user_first_name": "", "user_last_name": "", "company_name": "", "valid_license":  False}
