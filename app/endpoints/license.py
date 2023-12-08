@@ -33,3 +33,8 @@ def license(email, ext_id, device_id, phone_number):
             "ext_license": extension_data
         })
 
+@bp.route('/device/<email>/<ext_id>/<device_id>')
+def device(email, ext_id, device_id):
+    crud.rm_device(email=email, ext_id=ext_id, device_id=device_id)
+    
+    return jsonify({"result": "done"})

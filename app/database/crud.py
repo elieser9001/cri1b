@@ -30,7 +30,8 @@ def devices_count(email: str, ext_id: str):
 
     try:
         result = db_session.query(
-            Device).filter(Device.email == email).filter(Device.ext_id == ext_id).count()
+            Device
+        ).filter(Device.email == email).filter(Device.ext_id == ext_id).count()
             
         print("---------------------------------")
         print(result)
@@ -40,6 +41,16 @@ def devices_count(email: str, ext_id: str):
         result = 0
         
     return result
+
+def rm_device(email: str, ext_id: str, device_id: str):
+    try:
+        device = db_session.query(Device).filter(Device.email == email).filter(Device.ext_id == ext_id).filter(Device.key == device_id).one()
+        
+        db_session.delete(device)
+        db_session.commit()  
+    except Exception as e:
+        db_session.rollback()
+        print(e)
 
 def create_license(
     # extension_id: str,
