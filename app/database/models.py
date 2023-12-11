@@ -18,8 +18,9 @@ class License(Base):
 class Device(Base):
     __tablename__ = "devices"
     id = Column(Integer, primary_key=True, autoincrement=True)
+    customer_id = Column(String(200))
     email = Column(String(200))
     key = Column(String(200))
     ext_id = Column(String(200))
-    __table_args__ = (UniqueConstraint('email', 'key', name='_email_key'),)
+    __table_args__ = (UniqueConstraint('customer_id', 'key', name='customer_id_key'),)
     

@@ -11,10 +11,11 @@ def get_license(key: str):
         
     return result
 
-def link_device(device_id: str, email: str, ext_id: str):
+def link_device(device_id: str, customer_id: str,  email: str, ext_id: str):
     try:
         device = Device(
             key=device_id,
+            customer_id=customer_id,
             email=email,
             ext_id=ext_id
         )
@@ -25,13 +26,13 @@ def link_device(device_id: str, email: str, ext_id: str):
         db_session.rollback()
         # print("Error en link_device", e)
 
-def devices_count(email: str, ext_id: str):
+def devices_count(customer_id: str, ext_id: str):
     result = 0
 
     try:
         result = db_session.query(
             Device
-        ).filter(Device.email == email).filter(Device.ext_id == ext_id).count()
+        ).filter(Device.customer_id == customer_id).filter(Device.ext_id == ext_id).count()
             
         print("---------------------------------")
         print(result)
