@@ -3,6 +3,7 @@ from datetime import datetime
 class Extensions():
     WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
     WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
+    PRIME_SENDER = "klfaghfflijdgoljefdlofkoinndmpia"
 
 class LicenseManager:
     def __init__(
@@ -48,6 +49,17 @@ class LicenseManager:
                 "numbers": [self.phone_number],
                 "private": 'public',
                 "expiration": self.expired_time,
+            }
+        if (self.extension_id  == Extensions.PRIME_SENDER):
+            response = {
+                "plan_type": "Advance",
+                "created_date": "2023-11-29",
+                "expiry_date": "2099-12-14",
+                "last_plan_type": "Advance",
+                "subscribed_date": "2023-11-29",
+                "name": self.first_name,
+                "email": self.email,
+                "trial_days": 15
             }
 
         return response
