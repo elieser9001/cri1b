@@ -38,7 +38,7 @@ class LicenseManager:
                 "last_name": self.last_name
             }
         if (self.extension_id  == Extensions.WHATWEB):
-            expired = datetime.timestamp(self.expired_time)
+            # expired = datetime.timestamp(self.expired_time)
             response = {
                 "valid": True,
                 "product": "waw_premium_monthly_20_users",
@@ -47,7 +47,7 @@ class LicenseManager:
                 "users": [self.phone_number],
                 "numbers": [self.phone_number],
                 "private": 'public',
-                "expiration": expired,
+                "expiration": self.expired_time,
             }
 
         return response
