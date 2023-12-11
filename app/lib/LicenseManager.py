@@ -3,7 +3,8 @@ from datetime import datetime
 class Extensions():
     WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
     WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
-    PRIME_SENDER = "klfaghfflijdgoljefdlofkoinndmpia"
+    PRIME_SENDER1 = "klfaghfflijdgoljefdlofkoinndmpia"
+    PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"    
 
 class LicenseManager:
     def __init__(
@@ -50,7 +51,7 @@ class LicenseManager:
                 "private": 'public',
                 "expiration": self.expired_time,
             }
-        if (self.extension_id  == Extensions.PRIME_SENDER):
+        if (self.extension_id  == Extensions.PRIME_SENDER1 or self.extension_id  == Extensions.PRIME_SENDER2):
             response = {
                 "plan_type": "Advance",
                 "created_date": "2023-11-29",
