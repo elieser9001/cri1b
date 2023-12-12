@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect
 from app.lib.LicenseManager import LicenseManager
 from app.database import crud
 from app.lib.wordpressApi import get_cri1_license
@@ -59,6 +59,8 @@ def device(email, ext_id, device_id):
         ext_id=ext_id,
         device_id=device_id
     )
+    
+    redirect
 
     # cri1_license = get_cri1_license(email=email)
     
@@ -70,4 +72,6 @@ def device(email, ext_id, device_id):
     #         device_id=device_id
     #     )
     
-    return jsonify({"result": "done"})
+    # return jsonify({"result": "done"})
+    return redirect('https://cri1.com')
+
