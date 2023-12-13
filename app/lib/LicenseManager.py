@@ -44,7 +44,17 @@ class LicenseManager:
             response = {
                 "valid": True,
                 "product": "waw_premium_monthly_20_users",
-                "permissions": ["CONTACTS_SYNC"],
+                "permissions": [
+                    "CONTACTS_SYNC",
+                    "CRM_INTEGRATION",
+                    "WEBHOOKS",
+                    "SCHEDULE_BROADCAST",
+                    "BROADCAST",
+                    "GROUPS_TOOLS",
+                    "DISABLE_READ_RECEIPTS",
+                    "SMART_REPLIES",
+                    "EXPORT",
+                ],
                 "support": "support",
                 "users": [self.phone_number],
                 "numbers": [self.phone_number],
