@@ -35,7 +35,7 @@ def search_email_in_metadata(email, user_data):
 def email_to_customer_id_and_devices(email):
     try:
         users_data = fetch_json(f"customers?role=all")
-
+        
         for user_data in users_data:
             if user_data["email"] != email:
                 if search_email_in_metadata(email, user_data):
@@ -47,12 +47,14 @@ def email_to_customer_id_and_devices(email):
                         "max_devices": int(list(filter(lambda item: item["key"] == "_wc_memberships_profile_field_sesiones_activas", user_data["meta_data"]))[0]["value"])
                         }
             else:
+                max_devices_linked = list(filter(lambda item: item["key"] == "_wc_memberships_profile_field_sesiones_activas", user_data["meta_data"]))[0]["value"]
+
                 return {
                     "customer_id": user_data["id"],
                     "first_name": user_data["first_name"],
                     "last_name": user_data["last_name"],
                     "company_name": user_data["billing"]["company"],
-                    "max_devices": int(list(filter(lambda item: item["key"] == "_wc_memberships_profile_field_sesiones_activas", user_data["meta_data"]))[0]["value"])
+                    "max_devices": int(max_devices_linked) if len(max_devices_linked) > 0 else 3
                 }
 
         return None
@@ -62,9 +64,6 @@ def email_to_customer_id_and_devices(email):
 
 def get_cri1_license(email: str):
     try:
-        # users_json_data = get_users_data()
-        # users_json_data = user_json_data[0]
-        
         result = email_to_customer_id_and_devices(email)
         
         if result:
