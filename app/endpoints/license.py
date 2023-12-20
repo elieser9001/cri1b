@@ -60,7 +60,7 @@ def device(email, ext_id, device_id):
         device_id=device_id
     )
     
-    redirect
+    # redirect
 
     # cri1_license = get_cri1_license(email=email)
     

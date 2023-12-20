@@ -26,7 +26,7 @@ def search_email_in_metadata(email, user_data):
     try:
         user_profile_emails = list(filter(lambda item: item["key"][:36] == "_wc_memberships_profile_field_correo", user_data["meta_data"]))
 
-        email_found = (len(list(filter(lambda item: item["value"] == email, user_profile_emails))) > 0)
+        email_found = (len(list(filter(lambda item: str(item["value"]).upper() == str(email).upper(), user_profile_emails))) > 0)
 
         return email_found
     except:
@@ -37,7 +37,7 @@ def email_to_customer_id_and_devices(email):
         users_data = fetch_json(f"customers?role=all")
         
         for user_data in users_data:
-            if user_data["email"] != email:
+            if str(user_data["email"]).upper() != str(email).upper():
                 if search_email_in_metadata(email, user_data):
                     return {
                         "customer_id": user_data["id"],
