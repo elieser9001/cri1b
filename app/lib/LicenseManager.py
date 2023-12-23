@@ -6,6 +6,7 @@ class Extensions():
     PRIME_SENDER1 = "klfaghfflijdgoljefdlofkoinndmpia"
     PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
     WA_PLUS_WEB = "fhkimgpddcmnleeaicdjggpedegolbkb"
+    WA_PLUS_WEB2 = "llnfhpbbmindfdggckdodgceceondlnh"
 
 class LicenseManager:
     def __init__(
@@ -73,7 +74,7 @@ class LicenseManager:
                 "email": self.email,
                 "trial_days": 15
             }
-        elif (self.extension_id  == Extensions.WA_PLUS_WEB):
+        elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
             response = {
                 "code": 100000,          
                 "data": {
