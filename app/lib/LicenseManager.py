@@ -4,7 +4,8 @@ class Extensions():
     WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
     WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
     PRIME_SENDER1 = "klfaghfflijdgoljefdlofkoinndmpia"
-    PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"    
+    PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
+    WA_PLUS_WEB = "fhkimgpddcmnleeaicdjggpedegolbkb"
 
 class LicenseManager:
     def __init__(
@@ -39,7 +40,7 @@ class LicenseManager:
                 "first_name": self.first_name,
                 "last_name": self.last_name
             }
-        if (self.extension_id  == Extensions.WHATWEB):
+        elif (self.extension_id  == Extensions.WHATWEB):
             # expired = datetime.timestamp(self.expired_time)
             response = {
                 "valid": True,
@@ -61,7 +62,7 @@ class LicenseManager:
                 "private": 'public',
                 "expiration": self.expired_time,
             }
-        if (self.extension_id  == Extensions.PRIME_SENDER1 or self.extension_id  == Extensions.PRIME_SENDER2):
+        elif (self.extension_id  == Extensions.PRIME_SENDER1 or self.extension_id  == Extensions.PRIME_SENDER2):
             response = {
                 "plan_type": "Advance",
                 "created_date": "2023-11-29",
@@ -71,6 +72,22 @@ class LicenseManager:
                 "name": self.first_name,
                 "email": self.email,
                 "trial_days": 15
+            }
+        elif (self.extension_id  == Extensions.WA_PLUS_WEB):
+            response = {
+                "code": 100000,          
+                "data": {
+                    "transaction_id": "transaction123",
+                    "plink_id": "plink_1MNCrsBNqRnfJH4PBxqdWfBJ",
+                    "current_plan": "plink_1MNCrsBNqRnfJH4PBxqdWfBJ",
+                    "joined_date": 1698865802000,
+                    "service_begin_period": 1698865802000,
+                    "service_end_period": 2014485002000,
+                    "upcoming_payments": 2014485002000,
+                    "expiration_time": 2014485002000,
+                    "state": 1,
+                    "pay_status": 0,  
+                }
             }
 
         return response

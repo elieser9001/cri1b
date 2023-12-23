@@ -5,6 +5,7 @@ from app.lib.wordpressApi import get_cri1_license
 
 bp = Blueprint('clients_checkin', __name__)
 
+@bp.route('/license/<email>/<ext_id>/<device_id>/', defaults={'phone_number': None})
 @bp.route('/license/<email>/<ext_id>/<device_id>/<phone_number>/')
 def license(email, ext_id, device_id, phone_number):
     cri1_license = get_cri1_license(email=email)
