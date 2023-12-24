@@ -7,6 +7,7 @@ class Extensions():
     PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
     WA_PLUS_WEB = "fhkimgpddcmnleeaicdjggpedegolbkb"
     WA_PLUS_WEB2 = "llnfhpbbmindfdggckdodgceceondlnh"
+    PREMIUM_SENDER = "pggchepbleikpkhffahfabfeodghbafd"
 
 class LicenseManager:
     def __init__(
@@ -76,7 +77,7 @@ class LicenseManager:
             }
         elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
             response = {
-                "code": 100000,          
+                "code": 100000,
                 "data": {
                     "transaction_id": "transaction123",
                     "plink_id": "plink_1MNCrsBNqRnfJH4PBxqdWfBJ",
@@ -89,6 +90,10 @@ class LicenseManager:
                     "state": 1,
                     "pay_status": 0,  
                 }
+            }
+        elif (self.extension_id  == Extensions.PREMIUM_SENDER):
+            response = {
+                "KEY_IS_PRO": True
             }
 
         return response
