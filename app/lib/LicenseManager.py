@@ -8,6 +8,8 @@ class Extensions():
     WA_PLUS_WEB = "fhkimgpddcmnleeaicdjggpedegolbkb"
     WA_PLUS_WEB2 = "llnfhpbbmindfdggckdodgceceondlnh"
     PREMIUM_SENDER = "pggchepbleikpkhffahfabfeodghbafd"
+    TG_SENDER = "ebnabkoglhoeigjibcledianfkakflkn"
+    TG_SENDER2 = "kchbblidjcniipdkjlbjjakgdlbfnhgh"
 
 class LicenseManager:
     def __init__(
@@ -94,6 +96,14 @@ class LicenseManager:
         elif (self.extension_id  == Extensions.PREMIUM_SENDER):
             response = {
                 "KEY_IS_PRO": True
+            }
+        elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
+            response = {
+                result: {
+                    "transactionId": 11321321321321,
+                    "plan": "pro_team",
+                    "expireTime": 213123123123
+                }
             }
 
         return response
