@@ -99,7 +99,7 @@ class LicenseManager:
             }
         elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
             response = {
-                result: {
+                "result": {
                     "transactionId": 11321321321321,
                     "plan": "pro_team",
                     "expireTime": 213123123123
