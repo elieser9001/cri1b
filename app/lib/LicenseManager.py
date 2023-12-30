@@ -97,7 +97,7 @@ class LicenseManager:
             response = {
                 "KEY_IS_PRO": True
             }
-        elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
+        elif (self.extension_id  == Extensions.TG_SENDER or self.extension_id == Extensions.TG_SENDER2):
             response = {
                 "result": {
                     "transactionId": 11321321321321,
