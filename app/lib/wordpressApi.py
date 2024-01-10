@@ -35,7 +35,7 @@ def search_email_in_metadata(email, user_data):
 def email_to_customer_id_and_devices(email):
     try:
         users_data = fetch_json(f"customers?role=all")
-        
+
         for user_data in users_data:
             if str(user_data["email"]).upper() != str(email).upper():
                 if search_email_in_metadata(email, user_data):
@@ -54,7 +54,7 @@ def email_to_customer_id_and_devices(email):
                     "first_name": user_data["first_name"],
                     "last_name": user_data["last_name"],
                     "company_name": user_data["billing"]["company"],
-                    "max_devices": int(max_devices_linked) if len(max_devices_linked) > 0 else 3
+                    "max_devices": int(max_devices_linked) if len(max_devices_linked) > 0 else 1
                 }
 
         return None
@@ -65,7 +65,7 @@ def email_to_customer_id_and_devices(email):
 def get_cri1_license(email: str):
     try:
         result = email_to_customer_id_and_devices(email)
-        
+
         if result:
             user_membership = get_user_membership(result["customer_id"])
             user_membership = user_membership[0]
