@@ -24,7 +24,7 @@ def link_device(device_id: str, customer_id: str,  email: str, ext_id: str):
         db_session.commit()
     except Exception as e:
         db_session.rollback()
-        print("Error en link_device", e)
+        # print("Error en link_device", e)
 
 def devices_count(customer_id: str, ext_id: str):
     result = 0
