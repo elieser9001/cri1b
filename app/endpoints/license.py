@@ -15,45 +15,57 @@ def license(email, ext_id, device_id, phone_number):
     print("_______________________________________________")
     
     if "valid_license" in cri1_license and cri1_license["valid_license"] == True:
-        
         already_linked = crud.device_already_linked(device_id=device_id)
         
         devices_count = crud.devices_count(
             customer_id=cri1_license["customer_id"],
             ext_id=ext_id
         )
-
-        print("************************************************")
-        print(crud.device_already_linked(device_id=device_id))
-        print("************************************************")
-
-        if devices_count > cri1_license["max_devices"] and not already_linked:
-            return jsonify({"error": "max_devices_linked"})
-            
-        if not already_linked:
-            crud.link_device(
-                device_id=device_id,
-                customer_id=cri1_license["customer_id"],
+        
+        if already_linked:
+            ext_license = LicenseManager(
                 email=email,
-                ext_id=ext_id
+                first_name=cri1_license["user_first_name"],
+                last_name=cri1_license["user_last_name"],
+                extension_id=ext_id,
+                device_id=ext_id,
+                phone_number=phone_number
             )
+            
+            extension_data = ext_license.extension_data()
         
-        ext_license = LicenseManager(
-            email=email,
-            first_name=cri1_license["user_first_name"],
-            last_name=cri1_license["user_last_name"],
-            extension_id=ext_id,
-            device_id=ext_id,
-            phone_number=phone_number
-        )
-        
-        extension_data = ext_license.extension_data()
-    
-        return jsonify({
-            "devices_count": devices_count,
-            "cri1_license": cri1_license,
-            "ext_license": extension_data
-        })
+            return jsonify({
+                "devices_count": devices_count,
+                "cri1_license": cri1_license,
+                "ext_license": extension_data
+            })
+        else:
+            if devices_count > cri1_license["max_devices"]:
+                return jsonify({"error": "max_devices_linked"})
+            else:
+                crud.link_device(
+                    device_id=device_id,
+                    customer_id=cri1_license["customer_id"],
+                    email=email,
+                    ext_id=ext_id
+                )
+                
+                ext_license = LicenseManager(
+                    email=email,
+                    first_name=cri1_license["user_first_name"],
+                    last_name=cri1_license["user_last_name"],
+                    extension_id=ext_id,
+                    device_id=ext_id,
+                    phone_number=phone_number
+                )
+                
+                extension_data = ext_license.extension_data()
+            
+                return jsonify({
+                    "devices_count": devices_count,
+                    "cri1_license": cri1_license,
+                    "ext_license": extension_data
+                })
     else:
         return jsonify({
             "devices_count": 0,
