@@ -26,9 +26,11 @@ def license(email, ext_id, device_id, phone_number):
             customer_id=cri1_license["customer_id"],
             ext_id=ext_id
         )
+        
+        ifhp = crud.device_already_linked(device_id=device_id)
 
         print("************************************************")
-        print(crud.device_already_linked(device_id=device_id))    
+        print(crud.device_already_linked(device_id=device_id))
         print("************************************************")
 
         if devices_count > cri1_license["max_devices"] and crud.device_already_linked(device_id=device_id) == False:
@@ -48,7 +50,8 @@ def license(email, ext_id, device_id, phone_number):
         return jsonify({
             "devices_count": devices_count,
             "cri1_license": cri1_license,
-            "ext_license": extension_data
+            "ext_license": extension_data,
+            "ifhp": ifhp
         })
     else:
         return jsonify({
