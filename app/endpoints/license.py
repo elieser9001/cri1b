@@ -40,7 +40,7 @@ def license(email, ext_id, device_id, phone_number):
                 "ext_license": extension_data
             })
         else:
-            if devices_count > cri1_license["max_devices"] + 1:
+            if devices_count >= cri1_license["max_devices"]:
                 return jsonify({"error": "max_devices_linked"})
             else:
                 crud.link_device(
