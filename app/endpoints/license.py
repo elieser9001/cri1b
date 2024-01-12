@@ -52,8 +52,7 @@ def license(email, ext_id, device_id, phone_number):
         return jsonify({
             "devices_count": devices_count,
             "cri1_license": cri1_license,
-            "ext_license": extension_data,
-            "ifhp": ifhp
+            "ext_license": extension_data
         })
     else:
         return jsonify({
