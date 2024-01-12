@@ -27,7 +27,11 @@ def license(email, ext_id, device_id, phone_number):
             ext_id=ext_id
         )
 
-        if devices_count > cri1_license["max_devices"]:
+        print("************************************************")
+        print(crud.device_already_linked(device_id=device_id))    
+        print("************************************************")
+
+        if devices_count > cri1_license["max_devices"] and not crud.device_already_linked(device_id=device_id):
             return jsonify({"error": "max_devices_linked"})
         
         ext_license = LicenseManager(

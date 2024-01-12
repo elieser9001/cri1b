@@ -26,17 +26,28 @@ def link_device(device_id: str, customer_id: str,  email: str, ext_id: str):
         db_session.rollback()
         # print("Error en link_device", e)
 
+def device_already_linked(device_id: str):
+    try:
+        result = Device.query.filter(Device.key == device_id).one()
+    except Exception as e:
+        result = None
+    
+    if result:
+        return True
+    else:
+        return False
+
 def devices_count(customer_id: str, ext_id: str):
     result = 0
 
     try:
         result = db_session.query(
             Device
-        ).filter(Device.customer_id == customer_id).filter(Device.ext_id == ext_id).count()
-            
-        print("---------------------------------")
-        print(result)
-        print("---------------------------------")
+        ).filter(
+            Device.customer_id == customer_id
+        ).filter(
+            Device.ext_id == ext_id
+        ).count()
     except Exception as e:
         print("Error en devices_count", e)
         result = 0
