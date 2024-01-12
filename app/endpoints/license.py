@@ -15,26 +15,28 @@ def license(email, ext_id, device_id, phone_number):
     print("_______________________________________________")
     
     if "valid_license" in cri1_license and cri1_license["valid_license"] == True:
-        crud.link_device(
-            device_id=device_id,
-            customer_id=cri1_license["customer_id"],
-            email=email,
-            ext_id=ext_id
-        )
+        
+        already_linked = crud.device_already_linked(device_id=device_id)
         
         devices_count = crud.devices_count(
             customer_id=cri1_license["customer_id"],
             ext_id=ext_id
         )
-        
-        ifhp = crud.device_already_linked(device_id=device_id)
 
         print("************************************************")
         print(crud.device_already_linked(device_id=device_id))
         print("************************************************")
 
-        if devices_count > cri1_license["max_devices"] and crud.device_already_linked(device_id=device_id) == False:
+        if devices_count > cri1_license["max_devices"] and not already_linked:
             return jsonify({"error": "max_devices_linked"})
+            
+        if not already_linked:
+            crud.link_device(
+                device_id=device_id,
+                customer_id=cri1_license["customer_id"],
+                email=email,
+                ext_id=ext_id
+            )
         
         ext_license = LicenseManager(
             email=email,
