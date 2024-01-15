@@ -9,14 +9,18 @@ class Extensions():
     PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
     PRIME_SENDER_FIXED = "primesender"
     # ---------------------------------
-    WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
-    # ---------------------------------
     WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
+    WHATWEB_FIXED = "waweb"
+    # ---------------------------------
+    WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
+    WHATSUP_PLUS_FIXED = "whatsupplus"
     # ---------------------------------
     PREMIUM_SENDER = "pggchepbleikpkhffahfabfeodghbafd"
+    PREMIUM_SENDER_FIXED = "premiumsender"
     # ---------------------------------
     TG_SENDER = "ebnabkoglhoeigjibcledianfkakflkn"
     TG_SENDER2 = "kchbblidjcniipdkjlbjjakgdlbfnhgh"
+    TG_SENDER_FIXED = "tgsender"
     # ---------------------------------
 
 class LicenseManager:
@@ -40,7 +44,7 @@ class LicenseManager:
     def extension_data(self):
         response = {}
         
-        if (self.extension_id == Extensions.WHATSUP_PLUS):
+        if (self.extension_id == Extensions.WHATSUP_PLUS or self.extension_id == Extensions.WHATSUP_PLUS_FIXED):
             response = {
                 "cancelado": "",
                 "s_status": "active",
@@ -52,7 +56,7 @@ class LicenseManager:
                 "first_name": self.first_name,
                 "last_name": self.last_name
             }
-        elif (self.extension_id  == Extensions.WHATWEB):
+        elif (self.extension_id  == Extensions.WHATWEB or self.extension_id  == Extensions.WHATWEB_FIXED):
             # expired = datetime.timestamp(self.expired_time)
             response = {
                 "valid": True,
@@ -101,11 +105,11 @@ class LicenseManager:
                     "pay_status": 0,  
                 }
             }
-        elif (self.extension_id  == Extensions.PREMIUM_SENDER):
+        elif (self.extension_id  == Extensions.PREMIUM_SENDER or self.extension_id  == Extensions.PREMIUM_SENDER_FIXED):
             response = {
                 "KEY_IS_PRO": True
             }
-        elif (self.extension_id  == Extensions.TG_SENDER or self.extension_id == Extensions.TG_SENDER2):
+        elif (self.extension_id  == Extensions.TG_SENDER or self.extension_id == Extensions.TG_SENDER2 or self.extension_id == Extensions.TG_SENDER_FIXED):
             response = {
                 "result": {
                     "transactionId": 11321321321321,
