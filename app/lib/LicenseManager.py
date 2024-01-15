@@ -1,15 +1,23 @@
 from datetime import datetime
 
 class Extensions():
-    WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
-    WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
-    PRIME_SENDER1 = "klfaghfflijdgoljefdlofkoinndmpia"
-    PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
     WA_PLUS_WEB = "fhkimgpddcmnleeaicdjggpedegolbkb"
     WA_PLUS_WEB2 = "llnfhpbbmindfdggckdodgceceondlnh"
+    WA_PLUS_WEB_FIXED = "waplusweb"
+    # ---------------------------------
+    PRIME_SENDER1 = "klfaghfflijdgoljefdlofkoinndmpia"
+    PRIME_SENDER2 = "mddooilhbkodhjkicllbenpphldnolla"
+    PRIME_SENDER_FIXED = "primesender"
+    # ---------------------------------
+    WHATSUP_PLUS = "lpbkofhnclhhlaibcklkgaonbbmhjeco"
+    # ---------------------------------
+    WHATWEB = "ekcgkejcjdcmonfpmnljobemcbpnkamh"
+    # ---------------------------------
     PREMIUM_SENDER = "pggchepbleikpkhffahfabfeodghbafd"
+    # ---------------------------------
     TG_SENDER = "ebnabkoglhoeigjibcledianfkakflkn"
     TG_SENDER2 = "kchbblidjcniipdkjlbjjakgdlbfnhgh"
+    # ---------------------------------
 
 class LicenseManager:
     def __init__(
@@ -66,7 +74,7 @@ class LicenseManager:
                 "private": 'public',
                 "expiration": self.expired_time,
             }
-        elif (self.extension_id  == Extensions.PRIME_SENDER1 or self.extension_id  == Extensions.PRIME_SENDER2):
+        elif (self.extension_id  == Extensions.PRIME_SENDER1 or self.extension_id  == Extensions.PRIME_SENDER2 or self.extension_id  == Extensions.PRIME_SENDER_FIXED):
             response = {
                 "plan_type": "Advance",
                 "created_date": "2023-11-29",
@@ -77,7 +85,7 @@ class LicenseManager:
                 "email": self.email,
                 "trial_days": 15
             }
-        elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2):
+        elif (self.extension_id  == Extensions.WA_PLUS_WEB or self.extension_id == Extensions.WA_PLUS_WEB2 or Extensions.WA_PLUS_WEB_FIXED):
             response = {
                 "code": 100000,
                 "data": {
