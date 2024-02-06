@@ -1,9 +1,14 @@
 import requests
-from datetime import datetime, timedelta
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+cri1_username = os.getenv('CRI1_USERNAME')
+cri1_password = os.getenv('CRI1_PASSWORD')
 
 def fetch_json(wc_endpoint):
     url = f"https://cri1.com/wp-json/wc/v3/{wc_endpoint}"
-    response = requests.get(url, auth=("Developer", "Developer_2023$"))
+    response = requests.get(url, auth=(cri1_username, cri1_password))
     try:
         r_json = response.json()
     except:
@@ -14,7 +19,15 @@ def fetch_json(wc_endpoint):
 def fetch_graphql(query, variables):
     url = "https://cri1.com/graphql"
 
-    response = requests.post(url, auth=("Developer", "Developer_2023$"), json={"query": query, "variables": variables})
+    response = requests.post(
+        url,
+        auth=(cri1_username, cri1_password),
+        json={
+            "query": query,
+            "variables": variables
+        }
+    )
+
     try:
         r_json = response.json()
     except:
