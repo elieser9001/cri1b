@@ -24,7 +24,7 @@ def link_device(device_id: str, customer_id: str,  email: str, ext_id: str):
         db_session.commit()
     except Exception as e:
         db_session.rollback()
-        # print("Error en link_device", e)
+        print("Error en link_device", e)
 
 def device_already_linked(device_id: str):
     try:
@@ -65,22 +65,16 @@ def rm_device(email: str, ext_id: str, device_id: str):
         print(e)
 
 def create_license(
-    # extension_id: str,
-    # device_id: str,
-    # key: str,
     name: str,
     lastname: str,
     email: str,
     phone_number: str,
     expired_time: str
 ):
-    #  "%Y-%m-%d %I:%M:%S %p"
     expired_time = datetime.strptime(expired_time, "%d-%m-%Y %I:%M:%S %p")
     key = str(uuid.uuid4()).replace('-', '')
     
     license = License(
-        # extension_id,
-        # device_id,
         key=key,
         name=name,
         lastname=lastname,

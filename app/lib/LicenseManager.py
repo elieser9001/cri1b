@@ -57,7 +57,6 @@ class LicenseManager:
                 "last_name": self.last_name
             }
         elif (self.extension_id  == Extensions.WHATWEB or self.extension_id  == Extensions.WHATWEB_FIXED):
-            # expired = datetime.timestamp(self.expired_time)
             response = {
                 "valid": True,
                 "product": "waw_premium_monthly_20_users",

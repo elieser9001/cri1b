@@ -36,7 +36,6 @@ def fetch_graphql(query, variables):
     return r_json
 
 def get_users_data():
-    # json_data = fetch_json(f"customers?email={email}&role=all")
     json_data = fetch_json(f"customers?role=all")
     
     return json_data

@@ -94,18 +94,5 @@ def device(email, ext_id, device_id):
         device_id=device_id
     )
     
-    # redirect
-
-    # cri1_license = get_cri1_license(email=email)
-    
-    # if cri1_license:
-    #     crud.rm_device(
-    #         email=email,
-    #         customer_id=cri1_license["customer_id"],
-    #         ext_id=ext_id,
-    #         device_id=device_id
-    #     )
-    
-    # return jsonify({"result": "done"})
     return redirect('https://cri1.com')
 

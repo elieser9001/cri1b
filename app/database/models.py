@@ -5,8 +5,6 @@ from .database import Base
 class License(Base):
     __tablename__ = "licenses"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    # extension_id = Column(String(200))
-    # device_id = Column(String(200))
     key = Column(String(200))
     name = Column(String(200))
     lastname = Column(String(200))
@@ -23,4 +21,3 @@ class Device(Base):
     key = Column(String(200))
     ext_id = Column(String(200))
     __table_args__ = (UniqueConstraint('customer_id', 'key', name='customer_id_key'),)
-    
